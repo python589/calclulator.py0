@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio Calculator</title>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        input {
+            width: 200px;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            background: #0072ff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #005bb5;
+        }
+        #answer {
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body onload="brython()">
+
+<div class="calculator">
+    <h2>Simple Calculator</h2>
+    <input id="expr" placeholder="Enter expression e.g., 2+3">
+    <br>
+    <button id="solve">Calculate</button>
+    <div id="answer"></div>
+</div>
+<p>calculator by weltech by pixel</p>
+
+<script type="text/python">
+from browser import document
+
+def calculate(event):
+    expr = document['expr'].value
+    try:
+        result = eval(expr)
+        document['answer'].text = f"Result: {result}"
+    except:
+        document['answer'].text = "Error: Invalid Expression"
+
+document['solve'].bind('click', calculate)
+</script>
+
+</body>
+</html>
